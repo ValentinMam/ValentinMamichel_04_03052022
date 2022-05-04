@@ -44,6 +44,9 @@ closeModal(modalInscription, btnInscriptionClose);
 // REGEX
 let regexFirstName = /^[a-zA-Z-\s]{2,}$/;
 let regexLastName = /^[a-zA-Z-\s]{2,}$/;
+let regexEmail =
+  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+let regexBirthDate = /^[0-9]{4}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{2}$/;
 
 // FIRSTNAME
 
@@ -104,4 +107,73 @@ function validLast() {
   return errorLastName;
 }
 
+// EMAIL
+
+document.getElementById("email").addEventListener("input", function (e) {
+  validEmail();
+});
+
+function validEmail() {
+  let elt = document.forms["reserve"]["email"].value;
+  let errorEmail = false;
+  let msgError = document.getElementById("errorEmail");
+  let errorInputBorder = document.getElementById("email");
+
+  if (!elt) {
+    msgError.innerHTML = "Le champ ne doit pas être vide !";
+    errorInputBorder.style.border = "2px solid red";
+    errorEmail = false;
+  } else if (!regexEmail.test(elt)) {
+    msgError.innerHTML = "Votre email est invalide";
+    errorInputBorder.style.border = "2px solid red";
+    errorEmail = false;
+  } else if (regexEmail.test(elt)) {
+    msgError.innerHTML = "";
+    errorInputBorder.style.border = "none";
+    errorEmail = true;
+  }
+  return errorEmail;
+}
+
+// BIRTHDATE
+
+document.getElementById("birthdate").addEventListener("input", function (e) {
+  validBirthDate();
+});
+
+function validBirthDate() {
+  let elt = document.forms["reserve"]["birthdate"].value;
+
+  let errorBirthDate = false;
+  let msgError = document.getElementById("errorBirthdate");
+  let errorInputBorder = document.getElementById("birthdate");
+
+  if (!elt) {
+    msgError.innerHTML = "Le champ ne doit pas être vide !";
+    errorInputBorder.style.border = "2px solid red";
+    errorBirthDate = false;
+  }
+  if (!regexBirthDate.test(elt)) {
+    msgError.innerHTML = "Vous devez entrer votre date de naissance.";
+    errorInputBorder.style.border = "2px solid red";
+    errorBirthDate = false;
+  }
+  if (regexBirthDate.test(elt)) {
+    msgError.innerHTML = "";
+    errorInputBorder.style.border = "none";
+    errorBirthDate = true;
+  }
+  return errorBirthDate;
+}
+
+// =============NEXT STEPS ===============
+// =======================================
+
+// QUANTITY OF TOURNAMENT
+// LOCATION
+// USER CONDITIONS
+// EMAILING ?
+
 // SUBMIT
+
+// CONFIRMATION MESSAGE
