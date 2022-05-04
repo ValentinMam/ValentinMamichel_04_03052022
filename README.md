@@ -21,7 +21,7 @@ Issues : https://github.com/OpenClassrooms-Student-Center/GameOn-website-FR/issu
 
 ## Fermer la modale 1️⃣
 
-- [] Ajouter la fonctionnalité au bouton (x)
+- [x] Ajouter la fonctionnalité au bouton (x)
 
 ## Implémenter entrées du formulaire 2️⃣
 
