@@ -15,44 +15,54 @@
     />
   </head>
   <body>
-    <div class="topnav" id="myTopnav">
-      <div class="header-logo">
-        <img alt="logo" src="img/Logo.png" width="auto" height="auto" />
+    <!-- HEADER SECTION -->
+    <header>
+      <div class="topnav" id="myTopnav">
+        <div class="header-logo">
+          <img alt="logo" src="img/Logo.png" width="auto" height="auto" />
+        </div>
+        <!-- navigation -->
+        <div class="main-navbar">
+          <a href="#" class="active"><span>Accueil</span></a>
+          <a href="#"><span>Détails de l'évènement</span></a>
+          <a href="#"><span>À propos</span></a>
+          <a href="#"><span>Contact</span></a>
+          <a href="#"><span>Évènements passés</span></a>
+          <a href="javascript:void(0);" class="icon" onclick="editNav()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
       </div>
-      <div class="main-navbar">
-        <a href="#" class="active"><span>Accueil</span></a>
-        <a href="#"><span>Détails de l'évènement</span></a>
-        <a href="#"><span>À propos</span></a>
-        <a href="#"><span>Contact</span></a>
-        <a href="#"><span>Évènements passés</span></a>
-        <a href="javascript:void(0);" class="icon" onclick="editNav()">
-          <i class="fa fa-bars"></i>
-        </a>
-      </div>
-    </div>
+    </header>
+    <!-- MAIN SECTION -->
     <main>
       <div class="hero-section">
         <div class="hero-content">
+          <!-- title -->
           <h1 class="hero-headline">
             Marathon national<br />
             de jeux vidéos
           </h1>
+          <!-- text -->
           <p class="hero-text">
             Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux
             réservations... Places limitées !
           </p>
+          <!-- signUp button -->
           <button class="btn-signup modal-btn">je m'inscris</button>
         </div>
         <div class="hero-img">
           <img src="img/bg_img.jpg" alt="img" />
         </div>
       </div>
-
+      <!-- signUp modal -->
       <div class="bground">
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
+            <!-- signUp form -->
             <form name="reserve" action="index.html" method="get">
+              <!-- first name input -->
               <div class="formData">
                 <label>Prénom</label><br />
                 <input
@@ -63,6 +73,7 @@
                   minlength="2"
                 /><br />
               </div>
+              <!-- last name input -->
               <div class="formData">
                 <label>Nom</label><br />
                 <input
@@ -72,6 +83,7 @@
                   name="last"
                 /><br />
               </div>
+              <!-- email input -->
               <div class="formData">
                 <label>E-mail</label><br />
                 <input
@@ -81,6 +93,7 @@
                   name="email"
                 /><br />
               </div>
+              <!-- birthdate input -->
               <div class="formData">
                 <label>Date de naissance</label><br />
                 <input
@@ -90,6 +103,7 @@
                   name="birthdate"
                 /><br />
               </div>
+              <!-- "how many tournaments" input -->
               <div class="formData">
                 <label
                   >À combien de tournois GameOn avez-vous déjà participé
@@ -104,10 +118,12 @@
                   max="99"
                 />
               </div>
+              <!-- "which tournament" input -->
               <p class="text-label">
                 A quel tournoi souhaitez-vous participer cette année ?
               </p>
               <div class="formData">
+                <!-- New York choice -->
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -119,6 +135,7 @@
                   <span class="checkbox-icon"></span>
                   New York</label
                 >
+                <!-- San Francisco choice -->
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -130,6 +147,7 @@
                   <span class="checkbox-icon"></span>
                   San Francisco</label
                 >
+                <!-- Seattle choice -->
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -141,6 +159,7 @@
                   <span class="checkbox-icon"></span>
                   Seattle</label
                 >
+                <!-- Chicago choice -->
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -152,6 +171,7 @@
                   <span class="checkbox-icon"></span>
                   Chicago</label
                 >
+                <!-- Boston choice -->
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -163,6 +183,7 @@
                   <span class="checkbox-icon"></span>
                   Boston</label
                 >
+                <!-- Portland choice -->
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -175,7 +196,7 @@
                   Portland</label
                 >
               </div>
-
+              <!-- "user conditions and emailing" input -->
               <div class="formData">
                 <input
                   class="checkbox-input"
@@ -195,6 +216,7 @@
                 </label>
                 <br />
               </div>
+              <!-- signUp form submit -->
               <input
                 class="btn-submit"
                 type="submit"
@@ -206,9 +228,11 @@
         </div>
       </div>
     </main>
+    <!-- FOOTER SECTION -->
     <footer>
       <p class="copyrights">Copyright 2014 - 2022, GameOn Inc.</p>
     </footer>
+    <!-- SCRIPTS  -->
     <script src="js/modal.js"></script>
   </body>
 </html>
