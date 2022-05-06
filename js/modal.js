@@ -3,121 +3,135 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
-// CONSTANTES
+// ==================
+// =========== MODALS
+// ==================
 
+// PARAMS Modal sub
 const modalInscription = ".bground";
 const btnInscriptionClose = ".close";
+// PARAMS Modal valid
+const messageValidation = ".wrapper-modal-confirmation";
+const btnMessageValidation = ".closeMsgValidation";
 
-// LAUNCH MODAL FUNCTION
-
-// listen click event
+// launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
+// launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
 
-// END OF LAUNCH MODAL FUNCTION
-
-// CLOSE MODAL FUNCTION
+// close modal
 function closeModal(m, b) {
   const recModal = document.querySelector(m);
   const btnListener = document.querySelector(b);
-
   function closeModal() {
     recModal.style.display = "none";
-    // clear of local storage
     localStorage.clear();
   }
   btnListener.addEventListener("click", closeModal);
 }
 
-// close signUp modal
+// close sub modal
 closeModal(modalInscription, btnInscriptionClose);
+// close valid modal
+closeModal(messageValidation, btnMessageValidation);
 
-// END OF CLOSE MODAL FUNCTION
+// close modal
+document
+  .getElementById("buttonValidationClose")
+  .addEventListener("click", closeModalValidation);
+function closeModalValidation() {
+  let modalClose = document.querySelector(messageValidation);
+  modalClose.style.display = "none";
+  localStorage.clear();
+}
 
-// ISSUES #1 => OK
-
-// FORM
+// ==================
+// ============= FORM
+// ==================
 
 // REGEX
-let regexFirstName = /^[a-zA-Z-\s]{2,}$/;
-let regexLastName = /^[a-zA-Z-\s]{2,}$/;
+let regex = /^[a-zA-Z-\s]{2,}$/;
+let regexName = /^[a-zA-Z-\s]{2,}$/;
 let regexEmail =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-let regexBirthDate = /^[0-9]{4}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{2}$/;
+let regexDate = /^[0-9]{4}([\-/ \.])[0-9]{2}[\-/ \.][0-9]{2}$/;
+let regexQuantity = /^[0-9]{1,}$/;
 
-// FIRSTNAME
-
-document.getElementById("firstName").addEventListener("input", function (e) {
-  validFirstName();
+// firstname
+document.getElementById("first").addEventListener("input", function (e) {
+  validFirst();
 });
 
-function validFirstName() {
-  const elt = document.forms["reserve"]["firstName"].value;
-  let errorFirstName = false;
-  let msgError = document.getElementById("errorFirstName");
-  let errorInputBorder = document.getElementById("firstName");
+function validFirst() {
+  const elt = document.forms["reserve"]["first"].value;
+
+  let errorPrenom = false;
+
+  let msgError = document.getElementById("erreurPrenom");
+  let errorInputBorder = document.getElementById("first");
 
   if (!elt) {
     msgError.innerText = "Le champ ne doit pas être vide !";
     errorInputBorder.style.border = "2px solid red";
-    errorFirstName = false;
-  } else if (!regexFirstName.test(elt)) {
+    errorPrenom = false;
+  } else if (!regex.test(elt)) {
     msgError.innerText = "Veuillez entrer 2 caractères ou plus";
     errorInputBorder.style.border = "2px solid red";
-    errorFirstName = false;
-  } else if (regexFirstName.test(elt)) {
+    errorPrenom = false;
+  } else if (regex.test(elt)) {
     msgError.innerText = "";
     errorInputBorder.style.border = "none";
-    errorFirstName = true;
+    errorPrenom = true;
   } else {
-    errorFirstName = true;
+    errorPrenom = true;
   }
-  return errorFirstName;
+  return errorPrenom;
 }
 
-// LASTNAME
-
-document.getElementById("lastName").addEventListener("input", function (e) {
+// lastname
+document.getElementById("last").addEventListener("input", function (e) {
   validLast();
 });
 
 function validLast() {
-  let elt = document.forms["reserve"]["lastName"].value;
-  let errorLastName = false;
+  let elt = document.forms["reserve"]["last"].value;
 
-  let msgError = document.getElementById("errorLastName");
-  let errorInputBorder = document.getElementById("lastName");
+  let errorName = false;
+
+  let msgError = document.getElementById("erreurNom");
+  let errorInputBorder = document.getElementById("last");
 
   if (!elt) {
     msgError.innerHTML = "Le champ ne doit pas être vide !";
     errorInputBorder.style.border = "2px solid red";
-    errorLastName = false;
-  } else if (!regexLastName.test(elt)) {
+    errorName = false;
+  } else if (!regexName.test(elt)) {
     msgError.innerHTML = "Veuillez entrer 2 caractères ou plus";
     errorInputBorder.style.border = "2px solid red";
-    errorLastName = false;
-  } else if (regexLastName.test(elt)) {
+    errorName = false;
+  } else if (regexName.test(elt)) {
     msgError.innerHTML = "";
     errorInputBorder.style.border = "none";
-    errorLastName = true;
+    errorName = true;
   }
-  return errorLastName;
+  return errorName;
 }
 
-// EMAIL
-
+// email
 document.getElementById("email").addEventListener("input", function (e) {
   validEmail();
 });
 
 function validEmail() {
   let elt = document.forms["reserve"]["email"].value;
+
   let errorEmail = false;
-  let msgError = document.getElementById("errorEmail");
   let errorInputBorder = document.getElementById("email");
+
+  let msgError = document.getElementById("erreurEmail");
 
   if (!elt) {
     msgError.innerHTML = "Le champ ne doit pas être vide !";
@@ -135,45 +149,146 @@ function validEmail() {
   return errorEmail;
 }
 
-// BIRTHDATE
-
+// birthdate
 document.getElementById("birthdate").addEventListener("input", function (e) {
-  validBirthDate();
+  validDate();
 });
 
-function validBirthDate() {
+function validDate() {
   let elt = document.forms["reserve"]["birthdate"].value;
 
-  let errorBirthDate = false;
-  let msgError = document.getElementById("errorBirthdate");
+  let errorDate = false;
+  let msgError = document.getElementById("erreurBirthdate");
   let errorInputBorder = document.getElementById("birthdate");
 
   if (!elt) {
     msgError.innerHTML = "Le champ ne doit pas être vide !";
     errorInputBorder.style.border = "2px solid red";
-    errorBirthDate = false;
+    errorDate = false;
   }
-  if (!regexBirthDate.test(elt)) {
+  if (!regexDate.test(elt)) {
     msgError.innerHTML = "Vous devez entrer votre date de naissance.";
     errorInputBorder.style.border = "2px solid red";
-    errorBirthDate = false;
+    errorDate = false;
   }
-  if (regexBirthDate.test(elt)) {
+  if (regexDate.test(elt)) {
     msgError.innerHTML = "";
     errorInputBorder.style.border = "none";
-    errorBirthDate = true;
+    errorDate = true;
   }
-  return errorBirthDate;
+  return errorDate;
 }
 
-// =============NEXT STEPS ===============
-// =======================================
+// quantity
+document.getElementById("quantity").addEventListener("input", function (e) {
+  validQuantity();
+});
 
-// QUANTITY OF TOURNAMENT
-// LOCATION
-// USER CONDITIONS
-// EMAILING ?
+function validQuantity() {
+  let elt = document.forms["reserve"]["quantity"].value;
+  let errorQuantity = false;
 
-// SUBMIT
+  let msgError = document.getElementById("erreurQuantity");
+  let errorInputBorder = document.getElementById("quantity");
 
-// CONFIRMATION MESSAGE
+  if (!elt) {
+    msgError.innerHTML = "Le champ ne doit pas être vide !";
+    errorInputBorder.style.border = "2px solid red";
+    errorQuantity = false;
+  }
+  if (regexQuantity.test(elt)) {
+    msgError.innerHTML = "";
+    errorInputBorder.style.border = "none";
+    errorQuantity = true;
+  }
+  return errorQuantity;
+}
+
+// location
+const radioButtons = document.querySelectorAll('input[name="location"]');
+
+for (const radioButton of radioButtons) {
+  radioButton.addEventListener("input", showSelected);
+}
+function showSelected() {
+  let errorLocation = false;
+  let msgError = document.getElementById("spanErrorLocation");
+  if (!this.value) {
+    msgError.innerText = "Vous devez selectionner obligatoirement une ville";
+    errorLocation = false;
+  } else {
+    msgError.innerText = "";
+    errorLocation = true;
+  }
+  return errorLocation;
+}
+
+function validCheckRadioLocation() {
+  let elt = document.forms["reserve"]["location"].value;
+  let errorLocation = false;
+  let msgError = document.getElementById("spanErrorLocation");
+  if (!elt) {
+    msgError.innerText = "Vous devez selectionner obligatoirement une ville";
+    errorLocation = false;
+  } else {
+    msgError.innerText = "";
+    errorLocation = true;
+  }
+  return errorLocation;
+}
+
+// user conditions
+document.getElementById("checkbox1").addEventListener("input", function (e) {
+  validCgu();
+});
+
+function validCgu() {
+  let elt = document.forms["reserve"]["checkbox1"].checked;
+  let errorCgu = false;
+  let msgError = document.getElementById("spanErrorCheckCgu");
+
+  if (!elt) {
+    msgError.innerText = "Vous devez acceptez les termes et conditions";
+    errorCgu = false;
+  } else {
+    msgError.innerText = "";
+    errorCgu = true;
+  }
+  return errorCgu;
+}
+
+// stock on localstorage
+function storageState() {
+  return localStorage.setItem("etatMessage", true);
+}
+
+// validation modal
+function validationModal() {
+  if (localStorage.etatMessage) {
+    let modalMessage = document.querySelector(".wrapper-modal-confirmation");
+    modalMessage.style.display = "block";
+  }
+}
+
+// submit event and check valid
+document.forms["formValid"].addEventListener("submit", function (e) {
+  let errorSubmitValidation =
+    validFirst() &&
+    validLast() &&
+    validEmail() &&
+    validDate() &&
+    validQuantity() &&
+    validCheckRadioLocation() &&
+    validCgu();
+
+  if (errorSubmitValidation == false) {
+    e.preventDefault();
+    return false;
+  } else {
+    storageState();
+    return true;
+  }
+});
+
+// confirmation after submit
+validationModal();

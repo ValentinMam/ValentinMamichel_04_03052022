@@ -1,47 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <!-- header section css -->
-    <link rel="stylesheet" href="css/header.css" />
-    <!-- main section css -->
-    <link rel="stylesheet" href="css/main.css" />
-    <!-- footer section css -->
-    <link rel="stylesheet" href="css/footer.css" />
+    <!-- CSS : index -->
+    <link rel="stylesheet" href="./css/index.css" />
+    <!-- CSS : header -->
+    <link rel="stylesheet" href="./css/header.css" />
+    <!-- CSS : main -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- CSS : footer -->
+    <link rel="stylesheet" href="./css/footer.css" />
 
+    <!-- FONT AWESOME-->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <!-- FONTS -->
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans"
       rel="stylesheet"
     />
+
+    <title>Reservation</title>
   </head>
+
   <body>
     <!-- HEADER SECTION -->
     <header>
       <div class="topnav" id="myTopnav">
         <div class="header-logo">
-          <img
-            alt="logo GameOn"
-            src="img/logoGameOn.png"
-            width="auto"
-            height="auto"
-          />
+          <img alt="logo" src="./img/logoGameOn.png" />
         </div>
-        <!-- navigation -->
+
         <div class="main-navbar">
-          <a href="#" class="active"><span>Accueil</span></a>
-          <a href="#"><span>Détails de l'évènement</span></a>
-          <a href="#"><span>À propos</span></a>
-          <a href="#"><span>Contact</span></a>
-          <a href="#"><span>Évènements passés</span></a>
-          <a href="javascript:void(0);" class="icon" onclick="editNav()">
+          <a href="javascript:void(0);" class="icon clickOpen">
             <i class="fa fa-bars"></i>
           </a>
+          <a href="./index.html" class="active clickLink first-navlink"
+            ><span>Accueil</span></a
+          >
+          <a href="./index.html" class="clickLink"
+            ><span>Détails de l'évènement</span></a
+          >
+          <a href="./index.html" class="clickLink"><span>À propos</span></a>
+          <a href="./index.html" class="clickLink"><span>Contact</span></a>
+          <a href="./index.html" class="clickLink"
+            ><span>Évènements passés</span></a
+          >
         </div>
       </div>
     </header>
@@ -63,7 +70,7 @@
           <button class="btn-signup modal-btn">je m'inscris</button>
         </div>
         <div class="hero-img">
-          <img src="img/background.jpg" alt="jeux vidéos" />
+          <img src="./img/background.jpg" alt="jeux vidéos" />
         </div>
         <!-- signUp button -->
         <button class="btn-signup modal-btn">je m'inscris</button>
@@ -73,187 +80,196 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <!-- signUp form -->
-            <form name="reserve" action="index.html" method="get">
-              <!-- first name input -->
+            <!-- FORM SECTION -->
+            <form
+              id="formValid"
+              name="reserve"
+              action="index.html"
+              method="get"
+            >
+              <!-- firstName INPUT -->
               <div class="formData">
-                <label>Prénom</label><br />
+                <label for="first">Prénom</label><br />
                 <input
-                  class="text-control"
                   type="text"
-                  id="firstName"
-                  name="firstName"
+                  id="first"
+                  name="first"
+                  class="text-control"
                   minlength="2"
-                /><br />
-                <span id="errorFirstName" class="msg-input-error"></span>
+                />
+                <!-- error message -->
+                <span id="erreurPrenom" class="msg-input-error"></span>
               </div>
-              <!-- last name input -->
+              <!-- lastName INPUT -->
               <div class="formData">
-                <label>Nom</label><br />
-                <input
-                  class="text-control"
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                /><br />
-                <span id="errorLastName" class="msg-input-error"></span>
+                <label for="last">Nom</label><br />
+                <input type="text" id="last" name="last" class="text-control" />
+                <!-- error message -->
+                <span id="erreurNom" class="msg-input-error"></span>
               </div>
-              <!-- email input -->
+              <!-- email INPUT -->
               <div class="formData">
-                <label>E-mail</label><br />
+                <label for="email">E-mail</label><br />
                 <input
-                  class="text-control"
                   type="email"
                   id="email"
                   name="email"
-                /><br />
-                <span id="errorEmail" class="msg-input-error"></span>
-              </div>
-              <!-- birthdate input -->
-              <div class="formData">
-                <label>Date de naissance</label><br />
-                <input
                   class="text-control"
+                />
+                <!-- error message -->
+                <span id="erreurEmail" class="msg-input-error"></span>
+              </div>
+              <!-- birthdate INPUT -->
+              <div class="formData">
+                <label for="birthdate">Date de naissance</label><br />
+                <input
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                /><br />
-                <span id="errorBirthdate" class="msg-input-error"></span>
+                  class="text-control"
+                />
+                <!-- error message -->
+                <span id="erreurBirthdate" class="msg-input-error"></span>
               </div>
-              <!-- "how many tournaments" input -->
+              <!-- quantity INPUT -->
               <div class="formData">
-                <label
+                <label for="quantity"
                   >À combien de tournois GameOn avez-vous déjà participé
                   ?</label
                 ><br />
                 <input
                   type="number"
-                  class="text-control"
                   id="quantity"
                   name="quantity"
                   min="0"
                   max="99"
+                  class="text-control"
                 />
+                <!-- error message -->
+                <span id="erreurQuantity" class="msg-input-error"></span>
               </div>
-              <!-- "which tournament" input -->
+              <!-- location INPUTS -->
               <p class="text-label">
                 A quel tournoi souhaitez-vous participer cette année ?
               </p>
+
               <div class="formData">
-                <!-- New York choice -->
+                <!-- New York -->
                 <input
-                  class="checkbox-input"
-                  type="radio"
                   id="location1"
+                  type="radio"
                   name="location"
                   value="New York"
                 />
-                <label class="checkbox-label" for="location1">
-                  <span class="checkbox-icon"></span>
-                  New York</label
-                >
-                <!-- San Francisco choice -->
+                <label class="label-radio" for="location1">New York</label>
+                <!-- San Francisco -->
                 <input
-                  class="checkbox-input"
-                  type="radio"
                   id="location2"
+                  type="radio"
                   name="location"
                   value="San Francisco"
                 />
-                <label class="checkbox-label" for="location2">
-                  <span class="checkbox-icon"></span>
-                  San Francisco</label
-                >
-                <!-- Seattle choice -->
+                <label class="label-radio" for="location2">San Francisco</label>
+                <!-- Seattle -->
                 <input
-                  class="checkbox-input"
-                  type="radio"
                   id="location3"
+                  type="radio"
                   name="location"
                   value="Seattle"
                 />
-                <label class="checkbox-label" for="location3">
-                  <span class="checkbox-icon"></span>
-                  Seattle</label
-                >
-                <!-- Chicago choice -->
+                <label class="label-radio" for="location3">Seattle</label>
+                <!-- Chicago -->
                 <input
-                  class="checkbox-input"
-                  type="radio"
                   id="location4"
+                  type="radio"
                   name="location"
                   value="Chicago"
                 />
-                <label class="checkbox-label" for="location4">
-                  <span class="checkbox-icon"></span>
-                  Chicago</label
-                >
-                <!-- Boston choice -->
+                <label class="label-radio" for="location4">Chicago</label>
+                <!-- Boston -->
                 <input
-                  class="checkbox-input"
-                  type="radio"
                   id="location5"
+                  type="radio"
                   name="location"
                   value="Boston"
                 />
-                <label class="checkbox-label" for="location5">
-                  <span class="checkbox-icon"></span>
-                  Boston</label
-                >
-                <!-- Portland choice -->
+                <label class="label-radio" for="location5">Boston</label>
+                <!-- Portland -->
                 <input
-                  class="checkbox-input"
-                  type="radio"
                   id="location6"
+                  type="radio"
                   name="location"
                   value="Portland"
                 />
-                <label class="checkbox-label" for="location6">
-                  <span class="checkbox-icon"></span>
-                  Portland</label
-                >
+                <label class="label-radio" for="location6">Portland</label
+                ><br />
+                <!-- error message -->
+                <span id="spanErrorLocation" class="msg-input-error"></span
+                ><br />
               </div>
-              <!-- "user conditions and emailing" input -->
+              <!-- conditions user + newsletter INPUTS -->
               <div class="formData">
                 <input
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                  checked
+                  name="checkboxCgu"
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
-                  J'ai lu et accepté les conditions d'utilisation.
-                </label>
-                <br />
-                <input class="checkbox-input" type="checkbox" id="checkbox2" />
+                  J'ai lu et accepté les conditions d'utilisation. </label
+                ><br />
+                <!-- error message -->
+                <span id="spanErrorCheckCgu" class="msg-input-error"></span>
+
+                <input
+                  class="checkbox-input"
+                  type="checkbox"
+                  id="checkbox2"
+                  name="checkbox2"
+                />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
                   Je Je souhaite être prévenu des prochains évènements.
                 </label>
-                <br />
               </div>
-              <!-- signUp form submit -->
+
+              <!-- SUBMIT FORM SECTION -->
               <input
-                class="btn-submit"
+                id="btnSubmitValidation"
+                class="btn-submit button"
                 type="submit"
-                class="button"
                 value="C'est parti"
               />
             </form>
           </div>
         </div>
       </div>
-      <!-- INSERER MODAL MESSAGE DE REMERCIEMENT SUBMIT -->
-      <!-- INSERER MODAL MESSAGE DE REMERCIEMENT SUBMIT -->
-      <!-- INSERER MODAL MESSAGE DE REMERCIEMENT SUBMIT -->
+
+      <!-- CONFIRMATION MODAL SECTION -->
+      <div class="wrapper-modal-confirmation">
+        <div class="wrapper-modal-confirmation-content">
+          <span class="closeMsgValidation"></span>
+          <p id="modalConfirmation">
+            Merci pour <br />
+            votre inscription !
+          </p>
+          <div class="wrapper-button-validation">
+            <button id="buttonValidationClose" class="btn-validation">
+              Fermer
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
+
     <!-- FOOTER SECTION -->
     <footer>
       <p class="copyrights">Copyright 2014 - 2022, GameOn Inc.</p>
     </footer>
-    <!-- SCRIPTS  -->
-    <script src="js/navigation.js"></script>
-    <script src="js/modal.js"></script>
+
+    <!-- SCRIPTS -->
+    <script type="module" src="./js/navigation.js"></script>
+    <script type="module" src="./js/modal.js"></script>
   </body>
 </html>

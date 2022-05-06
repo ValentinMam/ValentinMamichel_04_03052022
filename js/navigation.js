@@ -10,3 +10,9 @@ function editNav() {
 }
 
 // END OF NAVIGATION FUNCTION
+
+const btnClickMenu = document.querySelector(".clickOpen");
+
+btnClickMenu.addEventListener("click", function () {
+  editNav();
+});
