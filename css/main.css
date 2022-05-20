@@ -95,7 +95,7 @@ main {
 
 /* RESPONSIVE 800 PX */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1080px) {
   .content {
     margin-top: 20%;
   }
@@ -272,11 +272,13 @@ main {
   margin-top: 59px;
 }
 
+/* TEST */
+
 /* =========================================== */
 /* ============== MODAL SUBSCRIBE ============ */
 /* =========================================== */
-
-.bground {
+.bground,
+.wrapper-modal-confirmation {
   display: none;
   position: fixed;
   z-index: 99;
@@ -288,7 +290,8 @@ main {
   background-color: #ffffff;
 }
 
-.content {
+.content,
+.wrapper-modal-confirmation-content {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
@@ -324,8 +327,8 @@ input {
 }
 
 .msg-input-error {
-  color: var(--bg-red-primary);
-  font-size: 16px;
+  color: #e54858;
+  font-size: 0.4em;
   margin: 0;
 }
 
@@ -551,35 +554,6 @@ input[type="radio"]:checked + label:before {
 /* ============ MODAL CONFIRMATION =========== */
 /* =========================================== */
 
-.wrapper-modal-confirmation {
-  display: none;
-  position: fixed;
-  z-index: 99;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  background-color: #ffffff;
-}
-
-.wrapper-modal-confirmation-content {
-  margin: 15% auto;
-  width: 100%;
-  height: 100%;
-  max-width: 500px;
-  animation-name: modalopen;
-  animation-duration: var(--modal-duration);
-  background: var(--bg-black-primary);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  color: var(--color-white);
-  padding-top: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
 #modalConfirmation {
   color: var(--color-white);
   height: 80%;
@@ -596,4 +570,8 @@ input[type="radio"]:checked + label:before {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.wrapper-modal-confirmation-content {
+  height: 80%;
 }

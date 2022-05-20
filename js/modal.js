@@ -52,8 +52,10 @@ function closeModalValidation() {
 // ============= FORM
 // ==================
 //;
-// REGEX
+// REGEX => Expressions régulières => examine les chaines de caractères
+
 let regex = /^\S[a-za-zàáâäçèéêëìíîïñòóôöùúûüA-Z-\s]{2,}$/;
+// ne commence pas par un espace + composé de caractères de a à z ou de A à Z + accents autorisés + au moins 2 caractères
 let regexName = /^\S[a-za-zàáâäçèéêëìíîïñòóôöùúûüA-Z-\s]{2,}$/;
 let regexEmail =
   /^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,})$/;
@@ -64,24 +66,31 @@ let regexQuantity = /^[0-9]{1,}$/;
 document.getElementById("first").addEventListener("input", function (e) {
   validFirst();
 });
+// on récupère l'élément avec l'id "first" (index.html ligne 93) + écoute de l'event input => lance la fonction validFirst
 
 function validFirst() {
   const elt = document.forms["reserve"]["first"].value;
-
+  // on récupère la valeur de l'input "first" enfant du formulaire nommé reserve (index.html ligne 84)
   let errorPrenom = false;
 
   let msgError = document.getElementById("erreurPrenom");
+  // on récupère l'élément avec l'id "erreurPrenom (index.html ligne 99)"
   let errorInputBorder = document.getElementById("first");
-
+  // on récupère l'élément avec l'id "first" (index.html ligne 93)
   if (!elt) {
+    // si pas de valeur => bord rouge + message erreur 1
     msgError.innerText = "Le champ ne doit pas être vide !";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858;";
     errorPrenom = false;
-  } else if (!regex.test(elt)) {
+  }
+  // si la valeur ne respecte pas la regex => bord rouge + message erreur 2
+  else if (!regex.test(elt)) {
     msgError.innerText = "Veuillez entrer 2 caractères ou plus";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858";
     errorPrenom = false;
-  } else if (regex.test(elt)) {
+  }
+  // si la valeur respecte la regex => pas de bord + pas de message
+  else if (regex.test(elt)) {
     msgError.innerText = "";
     errorInputBorder.style.border = "none";
     errorPrenom = true;
@@ -106,11 +115,11 @@ function validLast() {
 
   if (!elt) {
     msgError.innerHTML = "Le champ ne doit pas être vide !";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858";
     errorName = false;
   } else if (!regexName.test(elt)) {
     msgError.innerHTML = "Veuillez entrer 2 caractères ou plus";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858";
     errorName = false;
   } else if (regexName.test(elt)) {
     msgError.innerHTML = "";
@@ -135,11 +144,11 @@ function validEmail() {
 
   if (!elt) {
     msgError.innerHTML = "Le champ ne doit pas être vide !";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858";
     errorEmail = false;
   } else if (!regexEmail.test(elt)) {
     msgError.innerHTML = "Votre email est invalide";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858";
     errorEmail = false;
   } else if (regexEmail.test(elt)) {
     msgError.innerHTML = "";
@@ -163,12 +172,12 @@ function validDate() {
 
   if (!elt) {
     msgError.innerHTML = "Le champ ne doit pas être vide !";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858";
     errorDate = false;
   }
   if (!regexDate.test(elt)) {
     msgError.innerHTML = "Vous devez entrer votre date de naissance.";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858";
     errorDate = false;
   }
   if (regexDate.test(elt)) {
@@ -193,7 +202,7 @@ function validQuantity() {
 
   if (!elt) {
     msgError.innerHTML = "Le champ ne doit pas être vide !";
-    errorInputBorder.style.border = "2px solid red";
+    errorInputBorder.style.border = "2px solid #e54858";
     errorQuantity = false;
   }
   if (regexQuantity.test(elt)) {
@@ -272,14 +281,13 @@ function validationModal() {
 
 // submit event and check valid
 document.forms["formValid"].addEventListener("submit", function (e) {
-  let errorSubmitValidation =
-    validFirst() &&
-    validLast() &&
-    validEmail() &&
-    validDate() &&
-    validQuantity() &&
-    validCheckRadioLocation() &&
-    validCgu();
+  let errorSubmitValidation = validFirst();
+  errorSubmitValidation = validLast() && errorSubmitValidation;
+  errorSubmitValidation = validEmail() && errorSubmitValidation;
+  errorSubmitValidation = validDate() && errorSubmitValidation;
+  errorSubmitValidation = validQuantity() && errorSubmitValidation;
+  errorSubmitValidation = validCheckRadioLocation() && errorSubmitValidation;
+  errorSubmitValidation = validCgu() && errorSubmitValidation;
 
   if (errorSubmitValidation == false) {
     e.preventDefault();
